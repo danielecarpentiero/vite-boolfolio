@@ -5,6 +5,7 @@ export default {
 </script>
 
 <template>
+
 <h1>
   I'm a fabulous footer
 </h1>
