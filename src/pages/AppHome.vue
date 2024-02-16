@@ -1,11 +1,7 @@
 <script>
-import SingleProject from "./SingleProject.vue";
 
 export default {
   name: "Main",
-  components: {
-    SingleProject
-  },
   props: ["projects"]
 };
 </script>
