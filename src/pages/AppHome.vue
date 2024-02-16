@@ -15,7 +15,7 @@ export default {
     <h1 class="text-center py-3">My Projects</h1>
     <ul class="row list-unstyled">
       <li class="col col-md-4 g-2" v-for="(project, index) in projects" :key="index">
-        <router-link :to="{name: projects}">
+        <router-link :to="{name: projects, params: { slug: projectSlug }}">
         <SingleProject :project="project" />
         </router-link>
       </li>

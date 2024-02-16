@@ -22,14 +22,10 @@ export default {
   },
   methods : {
     getProject() {
-      axios.get(this.baseURL + this.apiURL.projects)
+      axios.get(this.baseURL + this.apiURL.projects + this.$route.params.slug)
           .then((response)=> {
             // response
-            if (response.data.success){
-              this.projects = response.data.results.data;
-            } else {
-              this.$router.push({name: 'not-found'})
-            }
+            this.projects = response.data.results.data;
           })
           .catch(function (error) {
             // handle error
