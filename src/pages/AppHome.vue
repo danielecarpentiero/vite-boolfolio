@@ -12,10 +12,12 @@ export default {
 
 <template>
   <div class="container">
-    <h1>My Projects</h1>
-    <ul>
-      <li class="list-unstyled" v-for="project in projects">
+    <h1 class="text-center py-3">My Projects</h1>
+    <ul class="row list-unstyled">
+      <li class="col col-md-4 g-2" v-for="(project, index) in projects" :key="index">
+        <router-link :to="{name: projects}">
         <SingleProject :project="project" />
+        </router-link>
       </li>
     </ul>
   </div>

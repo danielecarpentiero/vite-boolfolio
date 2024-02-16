@@ -1,15 +1,15 @@
 <script>
 
-import Footer from "./components/Footer.vue";
-import Main from "./components/Main.vue";
+import Main from "./pages/AppHome.vue";
 import Header from "./components/Header.vue";
+import {RouterView} from "vue-router";
 import axios from "axios";
 export default {
   name: "App",
   components: {
     Header,
-    Footer,
-    Main
+    Main,
+    RouterView
   },
   data(){
     return {
@@ -21,11 +21,15 @@ export default {
     }
   },
   methods : {
-    search() {
+    getProject() {
       axios.get(this.baseURL + this.apiURL.projects)
           .then((response)=> {
             // response
-            this.projects = response.data.results.data;
+            if (response.data.success){
+              this.projects = response.data.results.data;
+            } else {
+              this.$router.push({name: 'not-found'})
+            }
           })
           .catch(function (error) {
             // handle error
@@ -34,15 +38,14 @@ export default {
     }
   },
   created() {
-    this.search();
+    this.getProject();
   }
 }
 </script>
 
 <template>
 <Header />
-  <Main :projects="projects"/>
-  <Footer />
+  <RouterView/>
 </template>
 
 <style scoped lang="scss">
