@@ -3,7 +3,7 @@
 import axios from "axios";
 
 export default {
-  name: "Main",
+  name: "AppHome",
   data() {
     return {
       projects: [],
@@ -15,11 +15,13 @@ export default {
   },
   methods: {
     getProjects() {
-      console.log("Projects:", this.projects);
+      // console.log("Projects:", this.projects);
       // ottenere  tutti i progetti
-      axios.get(this.baseURL + this.apiURL.projects + this.$route.params.slug)
+      axios.get(this.baseURL + this.apiURL.projects)
           .then((response)=> {
-            this.projects = response.data.results.data()
+            console.log(response);
+            this.projects = response.data.results.data
+            console.log(this.projects)
           })
           .catch(function (error){
             console.log(error);
@@ -38,7 +40,7 @@ export default {
     <ul class="row list-unstyled">
       <li class="col col-md-4 g-2" v-for="(project, index) in projects" :key="index">
         <RouterLink :to="{name: 'project', params: { slug: project.slug }}">
-         {{project.name}}
+         {{project.title}}
         </RouterLink>
       </li>
     </ul>
