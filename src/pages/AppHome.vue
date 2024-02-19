@@ -19,9 +19,7 @@ export default {
       // ottenere  tutti i progetti
       axios.get(this.baseURL + this.apiURL.projects)
           .then((response)=> {
-            console.log(response);
             this.projects = response.data.results.data
-            console.log(this.projects)
           })
           .catch(function (error){
             console.log(error);
