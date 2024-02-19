@@ -1,8 +1,34 @@
 <script>
 
+import axios from "axios";
+
 export default {
   name: "Main",
-  props: ["projects"]
+  data() {
+    return {
+      projects: [],
+      baseURL : "http://127.0.0.1:8000/",
+      apiURL : {
+        projects: "api/projects/"
+      }
+    }
+  },
+  methods: {
+    getProjects() {
+      console.log("Projects:", this.projects);
+      // ottenere  tutti i progetti
+      axios.get(this.baseURL + this.apiURL.projects + this.$route.params.slug)
+          .then((response)=> {
+            this.projects = response.data.results.data()
+          })
+          .catch(function (error){
+            console.log(error);
+          })
+    }
+  },
+  created() {
+    this.getProjects();
+  }
 };
 </script>
 
